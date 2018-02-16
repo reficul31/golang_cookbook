@@ -55,3 +55,39 @@ func (q *Queue) Delete() (int, error) {
 	}
 	return element, nil
 }
+
+// Function to insert elements in a circular queue
+func (q *Queue) InsertCircular(element int) error {
+	q.lock.Lock()
+	defer q.lock.Unlock()
+
+	if (q.rear+1)%q.capacity == q.front {
+		return errors.New("Queue Capacity Full")
+	} else {
+		if q.front == -1 {
+			q.front = 0
+		}
+		q.rear = (q.rear+1)%q.capacity
+		q.arr[q.rear] = element
+		return nil
+	}
+}
+
+// Function to delete elements from the circular queue
+func (q *Queue) DeleteCircular() (int, error) {
+	q.lock.Lock()
+	defer q.lock.Unlock()
+	var element int
+
+	if q.rear == -1 && 	q.front == -1 {
+		return -1, errors.New("Queue Empty")
+	} else if q.front == q.rear {
+			element = q.arr[q.front]
+			q.front = -1
+			q.rear = -1
+	} else {
+		element = q.arr[q.front]
+		q.front = (q.front+1)%q.capacity
+	}
+	return element, nil
+}
