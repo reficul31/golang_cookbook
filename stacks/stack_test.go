@@ -12,9 +12,9 @@ func TestStackCapacityAllocation(testCase *testing.T) {
 		if len(s.arr) != 20 {
 			testCase.Errorf("Stack Error: Stack size not equal to capacity")
 		}
-	} else {
-		testCase.Errorf("Stack Error: %s", err)
 	}
+	
+	testCase.Errorf("Stack Error: %s", err)
 }
 
 // Test the Push function of the Stack

@@ -5,7 +5,7 @@ import (
 	"errors"
 )
 
-// Function to create a new Stack
+// NewStack is used to return a pointer to a newly allocated stack
 func NewStack(capacity int) (*Stack, error) {
 	if capacity >= 0 {
 		return &Stack{
@@ -14,12 +14,12 @@ func NewStack(capacity int) (*Stack, error) {
 			sync.Mutex{}, 
 			make([]int, capacity),
 		}, nil
-	} else {
-		return nil, errors.New("Stack Capacity cannot be negative")
 	}
+
+	return nil, errors.New("Stack Capacity cannot be negative")
 }
 
-// Function to push elements into the stack
+// Push is used to push elements on top of stack
 func (s *Stack) Push(element int) error {
 	s.lock.Lock()
 	defer s.lock.Unlock()
@@ -28,12 +28,12 @@ func (s *Stack) Push(element int) error {
 		s.top = s.top + 1
 		s.arr[s.top] = element
 		return nil
-	} else {
-		return errors.New("Stack Capacity Full")
 	}
+	
+	return errors.New("Stack Capacity Full")
 }
 
-// Function to pop elements from the stack
+// Pop is used to pop elements from top of the stack
 func (s *Stack) Pop() (int, error) {
 	s.lock.Lock()
 	defer s.lock.Unlock()
