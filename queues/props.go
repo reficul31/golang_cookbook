@@ -5,7 +5,7 @@ import (
 	"errors"
 )
 
-// Function to create a new Queue
+// NewQueue is used to return a pointer to a newly allocated queue
 func NewQueue(capacity int) (*Queue, error) {
 	if capacity >= 0 {
 		return &Queue{
@@ -15,29 +15,29 @@ func NewQueue(capacity int) (*Queue, error) {
 			sync.Mutex{},
 			make([]int, capacity),
 		}, nil
-	} else {
-		return nil, errors.New("Queue Capacity cannot be negative")
 	}
+
+	return nil, errors.New("Queue Capacity cannot be negative")
 }
 
-// Function to insert elements into the queue
+// Insert is used to insert an element in the queue
 func (q *Queue) Insert(element int) error {
 	q.lock.Lock()
 	defer q.lock.Unlock()
 
 	if q.rear == q.capacity-1 {
 		return errors.New("Queue Capacity Full")
-	} else {
-		if q.front == -1 {
-			q.front = 0
-		}
-		q.rear = q.rear+1
-		q.arr[q.rear] = element
-		return nil
 	}
+
+	if q.front == -1 {
+		q.front = 0
+	}
+	q.rear = q.rear+1
+	q.arr[q.rear] = element
+	return nil
 }
 
-// Function to delete elements from the queue
+// Delete is used to delete an element from the queue
 func (q *Queue) Delete() (int, error) {
 	q.lock.Lock()
 	defer q.lock.Unlock()
@@ -56,24 +56,24 @@ func (q *Queue) Delete() (int, error) {
 	return element, nil
 }
 
-// Function to insert elements in a circular queue
+// InsertCircular inserts an element in a circular queue
 func (q *Queue) InsertCircular(element int) error {
 	q.lock.Lock()
 	defer q.lock.Unlock()
 
 	if (q.rear+1)%q.capacity == q.front {
 		return errors.New("Queue Capacity Full")
-	} else {
-		if q.front == -1 {
-			q.front = 0
-		}
-		q.rear = (q.rear+1)%q.capacity
-		q.arr[q.rear] = element
-		return nil
 	}
+	
+	if q.front == -1 {
+		q.front = 0
+	}
+	q.rear = (q.rear+1)%q.capacity
+	q.arr[q.rear] = element
+	return nil
 }
 
-// Function to delete elements from the circular queue
+// DeleteCircular deletes an element from a circular queue
 func (q *Queue) DeleteCircular() (int, error) {
 	q.lock.Lock()
 	defer q.lock.Unlock()
@@ -92,7 +92,7 @@ func (q *Queue) DeleteCircular() (int, error) {
 	return element, nil
 }
 
-// Function to insert into a priority queue
+// InsertPriority inserts an element based on the priority function provided to it
 func (q *Queue) InsertPriority(element int, priorityDecider func(int, int) bool) error {
 	q.lock.Lock()
 	defer q.lock.Unlock()
@@ -115,7 +115,7 @@ func (q *Queue) InsertPriority(element int, priorityDecider func(int, int) bool)
 	}
 }
 
-// Function to insert from the front of the queue
+// InsertFront inserts element in the front of the queue
 func (q *Queue) InsertFront(element int) error {
 	q.lock.Lock()
 	defer q.lock.Unlock()
@@ -134,7 +134,7 @@ func (q *Queue) InsertFront(element int) error {
 	}
 }
 
-// Function to delete from the rear of the queue
+// DeleteRear deletes from the rear of the queue
 func (q *Queue) DeleteRear() (int, error) {
 	q.lock.Lock()
 	defer q.lock.Unlock()

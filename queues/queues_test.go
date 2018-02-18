@@ -137,9 +137,9 @@ func TestPriorityInsert(testCase *testing.T) {
 	less := func(a int, b int) bool {
 		if a>b {
 			return false
-		} else {
-			return true
 		}
+
+		return true
 	}
 	
 	q, _ := NewQueue(5)
