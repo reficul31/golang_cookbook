@@ -5,7 +5,7 @@ import (
 	"errors"
 )
 
-// Function to allocate memory to a new node
+// NewLinkedListNode is used to return a new node pointer of type LinkedList
 func NewLinkedListNode(element int) *LinkedList {
 	return &LinkedList{
 		sync.Mutex{},
@@ -14,7 +14,7 @@ func NewLinkedListNode(element int) *LinkedList {
 	}
 }
 
-// Function to insert a node at the head of the list
+// InsertAtHead inserts a node at the head of the list
 func (head *LinkedList) InsertAtHead(element int) {
 	head.lock.Lock()
 	defer head.lock.Unlock()
@@ -24,7 +24,7 @@ func (head *LinkedList) InsertAtHead(element int) {
 	head.next = new
 }
 
-// Function to insert a node at the back of the list
+// InsertAtBack inserts a node at the back of the list
 func (head *LinkedList) InsertAtBack(element int) {
 	head.lock.Lock()
 	defer head.lock.Unlock()
@@ -34,36 +34,36 @@ func (head *LinkedList) InsertAtBack(element int) {
 	temp.next = NewLinkedListNode(element)
 }
 
-// Function to delete a node from the head of the list
+// DeleteFromHead deletes a node from the head of the list
 func (head *LinkedList) DeleteFromHead() (int, error) {
 	head.lock.Lock()
 	defer head.lock.Unlock()
 
 	if head.next == nil {
 		return -1, errors.New("Linked List Empty")
-	} else {
-		temp := head.next
-		head.next = temp.next
-		return temp.data, nil
 	}
+	
+	temp := head.next
+	head.next = temp.next
+	return temp.data, nil
 }
 
-// Function to delete a node from the back of the list
+// DeleteFromBack deletes a node from the back of the list
 func (head *LinkedList) DeleteFromBack() (int, error) {
 	head.lock.Lock()
 	defer head.lock.Unlock()
 
 	if head.next == nil {
 		return -1, errors.New("Linked List Empty")
-	} else {
-		var prev, temp *LinkedList
-		prev = head
-		temp = head.next
-		for temp.next !=nil {
-			prev = temp
-			temp = temp.next
-		}
-		prev.next = nil
-		return temp.data, nil
 	}
+	
+	var prev, temp *LinkedList
+	prev = head
+	temp = head.next
+	for temp.next !=nil {
+		prev = temp
+		temp = temp.next
+	}
+	prev.next = nil
+	return temp.data, nil
 }
