@@ -1,9 +1,6 @@
 package stacks
 
-import (
-	"sync"
-	"errors"
-)
+import "sync"
 
 // NewStack is used to return a pointer to a newly allocated stack
 func NewStack(capacity int) (*Stack, error) {
@@ -16,7 +13,7 @@ func NewStack(capacity int) (*Stack, error) {
 		}, nil
 	}
 
-	return nil, errors.New("Stack Capacity cannot be negative")
+	return nil, ErrStackCapacity
 }
 
 // Push is used to push elements on top of stack
@@ -30,7 +27,7 @@ func (s *Stack) Push(element int) error {
 		return nil
 	}
 	
-	return errors.New("Stack Capacity Full")
+	return ErrStackFull
 }
 
 // Pop is used to pop elements from top of the stack
@@ -39,7 +36,7 @@ func (s *Stack) Pop() (int, error) {
 	defer s.lock.Unlock()
 
 	if s.top == -1 {
-		return -1, errors.New("Stack Empty")
+		return -1, ErrStackEmpty
 	}
 
 	element := s.arr[s.top]
