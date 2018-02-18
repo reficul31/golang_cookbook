@@ -1,9 +1,6 @@
 package llists
 
-import (
-	"sync"
-	"errors"
-)
+import "sync"
 
 // NewLinkedListNode is used to return a new node pointer of type LinkedList
 func NewLinkedListNode(element int) *LinkedList {
@@ -40,7 +37,7 @@ func (head *LinkedList) DeleteFromHead() (int, error) {
 	defer head.lock.Unlock()
 
 	if head.next == nil {
-		return -1, errors.New("Linked List Empty")
+		return -1, ErrLinkedListEmpty
 	}
 	
 	temp := head.next
@@ -54,7 +51,7 @@ func (head *LinkedList) DeleteFromBack() (int, error) {
 	defer head.lock.Unlock()
 
 	if head.next == nil {
-		return -1, errors.New("Linked List Empty")
+		return -1, ErrLinkedListEmpty
 	}
 	
 	var prev, temp *LinkedList
