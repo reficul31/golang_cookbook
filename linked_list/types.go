@@ -8,3 +8,11 @@ type LinkedList struct {
 	data int
 	next *LinkedList
 }
+
+// DoublyLinkedList is a single Node in a doubly linked list
+type DoublyLinkedList struct {
+	lock sync.Mutex
+	data int
+	next *DoublyLinkedList
+	prev *DoublyLinkedList
+}
