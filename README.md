@@ -1,0 +1,2 @@
+# GoLang Cookbook
+This repository is a collection of my implementations of common data structures and algorithms in GoLang. The main aim of this repository is to learn about GoLang in greater depth and in the process brush up on my Core Computer Science concepts.
