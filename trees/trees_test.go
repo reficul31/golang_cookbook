@@ -21,9 +21,9 @@ func TestInsertBinarySearchTree(testCase *testing.T) {
 	tree = nil
 
 	if tree, err = InsertBinarySearchTree(tree, 5); err != nil {
-		testCase.Errorf("Tree Error:", err)
+		testCase.Errorf("Tree Error: %s", err)
 	}
-	if tree.data != 5 || tree.left != nil || tree.right != nil{
+	if tree.data != 5 || tree.left != nil || tree.right != nil {
 		testCase.Errorf("Tree Error: Node not allocated the correct value")
 	}
 
@@ -31,7 +31,7 @@ func TestInsertBinarySearchTree(testCase *testing.T) {
 	tree, _ = InsertBinarySearchTree(tree, 4)
 	tree, _ = InsertBinarySearchTree(tree, 7)
 	tree, _ = InsertBinarySearchTree(tree, 6)
-	
+
 	if tree.left.data != 2 || tree.right.data != 7 {
 		testCase.Errorf("Tree Error: Binary search tree not created correctly")
 	}
