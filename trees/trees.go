@@ -18,6 +18,7 @@ func InsertBinarySearchTree(tree *Node, element int) (*Node, error) {
 		return NewNode(element), nil
 	}
 
+	var err error
 	if tree.data > element {
 		if tree.left, err = InsertBinarySearchTree(tree.left, element); err != nil {
 			return tree, err
