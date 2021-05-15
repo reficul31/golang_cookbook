@@ -36,6 +36,7 @@ Algorithm InorderTraversal(tree):
 
 This algorithm can be implemented in multiple ways.
 ##### 1.3.1.1 In-Order Traversal Iterative
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal.go#L8)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal_test.go#L6)]  
 ```
 Algorithm InorderTraversalIterative(tree):
 1. Initialize an empty stack
@@ -51,6 +52,7 @@ Algorithm InorderTraversalIterative(tree):
     	4. Set current to current's right child
 ```
 ##### 1.3.1.2 In-Order Traversal Recursive
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal.go#L31)]  
 ```
 Algorithm InorderTraversalRecursive(tree)
 1. InorderTraversalRecursive(tree's left child)
@@ -66,6 +68,7 @@ Algorithm PreorderTraversal(tree)
 
 This algorithm can also be implemented in multiple ways.
 ##### 1.3.2.1 Pre-Order Traversal Iterative
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal.go#L44)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal_test.go#L27)]  
 ```
 Algorithm PreorderTraversalIterative(tree):
 1. Initialize an empty stack
@@ -77,6 +80,7 @@ Algorithm PreorderTraversalIterative(tree):
 	4. Push left child of element on stack
 ```
 ##### 1.3.2.2 Pre-Order Traversal Recursive
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal.go#L69)]  
 ```
 Algorithm PreorderTraversalRecursive(tree):
 1. Visit the tree node
@@ -93,6 +97,7 @@ Algorithm PostorderTraversal(tree)
 
 This algorithm can also be implemented in multiple ways:
 ##### 1.3.3.1 Post-Order Traversal Iterative
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal.go#L82)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal_test.go#L48)]  
 ```
 Algorithm PostorderTraversalIterative(tree):
 1. Initialize two empty stack
@@ -105,9 +110,45 @@ Algorithm PostorderTraversalIterative(tree):
 4. Reverse stack 2 and visit nodes in order
 ```
 ##### 1.3.3.2 Post-Order Traversal Recursive
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal.go#L111)]
 ```
 Algorithm PreorderTraversalRecursive(tree):
 1. PreorderTraversalRecursive(tree's left child)
 2. PreorderTraversalRecursive(tree's right child)
 3. Visit the tree node
+```
+#### 1.3.4 Level-Order Traversal
+In level-order traversal, we visit the nodes at the same level. The nodes that are on the same height are visited together and then we visit the nodes on the next level.  
+Algorithm LevelOrderTraversal(tree)
+1. Visit the node at the current level
+2. Traverse to the next level of the tree
+
+
+##### 1.3.4.1 Level-Order Traversal (Flat order returns)
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal.go#L124)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal_test.go#L69)]  
+```
+Algorithm LevelOrderTraversalIterative(tree):
+1. Initialize an empty queue
+2. Push the root of the tree in the queue
+3. Do the following till queue is not empty:
+	1. Pop and element from front of queue
+	2. Visit the popped element's data
+	3. Push the element's left child into the queue
+	4. Push the element's right child into the queue
+```
+##### 1.3.4.2 Level-Order Traversal (2 dimensional returns)
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal.go#L150)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/traversal_test.go#L90)]  
+```
+Algorithm LevelOrderTraversalIterative(tree):
+1. Initialize 2 empty queue
+2. Push the root of the tree in the first queue
+3. Do the following till the queue is not empty
+	1. Pop the element from the front of queue 1
+	2. Visit the popped element's data
+	3. Push the element's left child in queue 2
+	4. Push the element's right child in queue 2
+	5. If queue 1 is empty
+		1. Set queue 1 to queue 2
+		2. Reinitialize queue 2 to an empty queue
+		3. Do the operation after the level has been traversed
 ```
