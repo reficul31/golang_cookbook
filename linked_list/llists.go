@@ -3,6 +3,8 @@ package llists
 import "sync"
 
 // NewLinkedListNode is used to return a new node pointer of type LinkedList
+// @arg element - Data for the new linked list node
+// @returns - Linked list node with data populated and next null
 func NewLinkedListNode(element int) *LinkedList {
 	return &LinkedList{
 		sync.Mutex{},
@@ -12,6 +14,7 @@ func NewLinkedListNode(element int) *LinkedList {
 }
 
 // InsertAtHead inserts a node at the head of the list
+// @arg element - Element to be inserted into the linked list
 func (head *LinkedList) InsertAtHead(element int) {
 	head.lock.Lock()
 	defer head.lock.Unlock()
@@ -22,16 +25,19 @@ func (head *LinkedList) InsertAtHead(element int) {
 }
 
 // InsertAtBack inserts a node at the back of the list
+// @arg element - Element to be inserted into the linked list
 func (head *LinkedList) InsertAtBack(element int) {
 	head.lock.Lock()
 	defer head.lock.Unlock()
 
 	var temp *LinkedList
-	for temp = head ; temp.next!=nil ; temp = temp.next {}
+	for temp = head; temp.next != nil; temp = temp.next {
+	}
 	temp.next = NewLinkedListNode(element)
 }
 
 // DeleteFromHead deletes a node from the head of the list
+// @returns - Integer value delete from the head of the list
 func (head *LinkedList) DeleteFromHead() (int, error) {
 	head.lock.Lock()
 	defer head.lock.Unlock()
@@ -39,13 +45,14 @@ func (head *LinkedList) DeleteFromHead() (int, error) {
 	if head.next == nil {
 		return -1, ErrLinkedListEmpty
 	}
-	
+
 	temp := head.next
 	head.next = temp.next
 	return temp.data, nil
 }
 
 // DeleteFromBack deletes a node from the back of the list
+// @returns - Integer value delete from the tail of the list
 func (head *LinkedList) DeleteFromBack() (int, error) {
 	head.lock.Lock()
 	defer head.lock.Unlock()
@@ -53,11 +60,11 @@ func (head *LinkedList) DeleteFromBack() (int, error) {
 	if head.next == nil {
 		return -1, ErrLinkedListEmpty
 	}
-	
+
 	var prev, temp *LinkedList
 	prev = head
 	temp = head.next
-	for temp.next !=nil {
+	for temp.next != nil {
 		prev = temp
 		temp = temp.next
 	}
