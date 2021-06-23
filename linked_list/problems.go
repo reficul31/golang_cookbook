@@ -142,3 +142,114 @@ func AddTwoNumbersUsingLinkedList(head1 *LinkedList, head2 *LinkedList) *LinkedL
 
 	return result
 }
+
+// Function to check whether the given linked list is a palindrome or not
+// @arg head - Head of the linked list
+// @returns - Boolean value as to whether the given linked list is a palindrome or not
+func IsPalindrome(head *LinkedList) bool {
+	if head == nil {
+		return false
+	}
+
+	stack := []*LinkedList{}
+	trav, fast := head, head
+	for fast != nil && fast.next != nil {
+		stack = append(stack, trav)
+		trav = trav.next
+		fast = fast.next.next
+	}
+
+	// If the list has odd number of elements, so skip the middle element
+	if fast != nil {
+		trav = trav.next
+	}
+
+	for trav != nil {
+		if node := stack[len(stack)-1]; node.data != trav.data {
+			return false
+		}
+
+		stack = stack[:len(stack)-1]
+		trav = trav.next
+	}
+
+	return false
+}
+
+// Function to check whether the two given linked lists intersect at a point or not
+// @arg head1 - Head of the first linked list
+// @arg head2 - Head of the second linked list
+// @returns - Node where the two linked lists intersect. Nil if there is no intersection
+func findIntersectionNode(head1 *LinkedList, head2 *LinkedList) *LinkedList {
+	if head1 == nil || head2 == nil {
+		return nil
+	}
+
+	trav1, trav2 := head1, head2
+	length1, length2 := 0, 0
+
+	for trav1.next != nil {
+		trav1 = trav1.next
+		length1 = length1 + 1
+	}
+
+	for trav2.next != nil {
+		trav2 = trav2.next
+		length2 = length2 + 1
+	}
+
+	// If the two linked lists do not have the same tail then they do not intersect
+	if trav1 != trav2 {
+		return nil
+	}
+
+	trav1, trav2 = head1, head2
+	if length1 > length2 {
+		for i := length1 - length2; i > 0; i = i - 1 {
+			trav1 = trav1.next
+		}
+	} else {
+		for i := length2 - length1; i > 0; i = i - 1 {
+			trav2 = trav2.next
+		}
+	}
+
+	for trav1 != trav2 {
+		trav1 = trav1.next
+		trav2 = trav2.next
+	}
+
+	return trav1
+}
+
+// Function to check whether the a given linked list has a cycle or not
+// @arg head - Head of the first linked list
+// @returns - Node where the cycle in the linked list starts. Nil if there is no cycle
+func detectCycleInLinkedList(head *LinkedList) *LinkedList {
+	if head == nil {
+		return nil
+	}
+
+	slow, fast := head, head
+	for fast != nil && fast.next != nil {
+		slow = slow.next
+		fast = fast.next.next
+
+		if slow == fast {
+			break
+		}
+	}
+
+	// If there is no cycle in the linked list we return nil
+	if fast == nil || fast.next == nil {
+		return nil
+	}
+
+	slow = head
+	for slow != fast {
+		slow = slow.next
+		fast = fast.next
+	}
+
+	return slow
+}
