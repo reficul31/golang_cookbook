@@ -96,3 +96,49 @@ func PartitionAtN(head *LinkedList, n int) *LinkedList {
 	tail.next = nil
 	return head
 }
+
+// Function to add two linked lists in position
+// @arg head1 - Head of the linked list 1
+// @arg head2 - Head of the linked list 2
+// @returns - The final linked list with added values
+func AddTwoNumbersUsingLinkedList(head1 *LinkedList, head2 *LinkedList) *LinkedList {
+	if head1 == nil {
+		return head2
+	}
+
+	if head2 == nil {
+		return head1
+	}
+
+	carry := 0
+	var result *LinkedList = nil
+	trav1, trav2 := head1, head2
+	trav3 := result
+
+	for trav1 != nil || trav2 != nil || carry > 0 {
+		sum1, sum2 := 0, 0
+		if trav1 != nil {
+			sum1 = trav1.data
+			trav1 = trav1.next
+		}
+
+		if trav2 != nil {
+			sum2 = trav2.data
+			trav2 = trav2.next
+		}
+
+		sum := sum1 + sum2 + carry
+		carry = sum / 10
+
+		new := NewLinkedListNode(sum % 10)
+		if result == nil {
+			result = new
+			trav3 = new
+		} else {
+			trav3.next = new
+			trav3 = trav3.next
+		}
+	}
+
+	return result
+}
