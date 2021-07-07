@@ -1,5 +1,5 @@
 # Tree Algorithms
-## 1 Binary Tree Traversals
+## 1. Binary Tree Traversals
 Traversal in trees mean the order in which the values are visited by the user. There are multiple ways to traverse a binary tree and each have their own different implementation.
 ### 1.1 In-Order Traversal
 In in-order traversal, we first visit the left node then the root node and then the right node.  
@@ -16,7 +16,7 @@ This algorithm can be implemented in multiple ways.
 Algorithm InorderTraversalIterative(tree):
 1. Initialize an empty stack
 2. Set current to the root node of the tree
-3. Do the following till current == null and stack is not empty
+3. Do the following till current != null and stack is not empty
 	1. If current is not null
 		1. Push current on the stack
 		2. Set current to current's left child
@@ -76,7 +76,7 @@ This algorithm can also be implemented in multiple ways:
 ```
 Algorithm PostorderTraversalIterative(tree):
 1. Initialize two empty stack
-2. Push the rppt node to the top of stack 1
+2. Push the root node to the top of stack 1
 3. Do the following till stack 1 is not empty:
 	1. Pop an element from stack 1
 	2. Push the popped element into stack 2
