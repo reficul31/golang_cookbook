@@ -12,7 +12,7 @@ func DeleteDuplicateUsingHashMaps(head *LinkedList) *LinkedList {
 	var previous *LinkedList = nil
 
 	for current := head; current.next != nil; {
-		if val, err := hashSet[current.next.data]; err && val {
+		if val, err := hashSet[current.data]; err && val {
 			if previous != nil {
 				previous.next = current.next
 				current = current.next
@@ -22,6 +22,7 @@ func DeleteDuplicateUsingHashMaps(head *LinkedList) *LinkedList {
 			}
 		} else {
 			hashSet[current.data] = true
+			previous = current
 			current = current.next
 		}
 	}
@@ -33,8 +34,8 @@ func DeleteDuplicateUsingHashMaps(head *LinkedList) *LinkedList {
 // @returns - Modified linked list with the duplicates deleted
 func DeleteDuplicateUsingIteration(head *LinkedList) *LinkedList {
 	for current := head; current != nil; {
-		for runner := current; runner.next != nil; {
-			if runner.next.data == current.data {
+		for runner := current.next; runner != nil && runner.next != nil; {
+			if runner.data == current.data {
 				runner.next = runner.next.next
 			} else {
 				runner = runner.next
@@ -48,7 +49,7 @@ func DeleteDuplicateUsingIteration(head *LinkedList) *LinkedList {
 // Function to find the n nodes before the last node in a linked list
 // @arg head - Head of the linked list
 // @arg n - Number of nodes skipped before the end of the list
-func nthToLastNode(head *LinkedList, n int) *LinkedList {
+func NthToLastNode(head *LinkedList, n int) *LinkedList {
 	if head == nil {
 		return nil
 	}
@@ -77,24 +78,22 @@ func PartitionAtN(head *LinkedList, n int) *LinkedList {
 		return nil
 	}
 
-	var tail *LinkedList
-	for tail = head; tail.next != nil; tail = tail.next {
-	}
+	tail, newHead := head, head
 
-	node := head
+	node := head.next
 	for node != nil {
 		next := node.next
 		if node.data > n {
 			tail.next = node
 			tail = node
+			tail.next = nil
 		} else {
-			node.next = head
-			head = node
+			node.next = newHead
+			newHead = node
 		}
 		node = next
 	}
-	tail.next = nil
-	return head
+	return newHead
 }
 
 // Function to add two linked lists in position
@@ -173,14 +172,14 @@ func IsPalindrome(head *LinkedList) bool {
 		trav = trav.next
 	}
 
-	return false
+	return true
 }
 
 // Function to check whether the two given linked lists intersect at a point or not
 // @arg head1 - Head of the first linked list
 // @arg head2 - Head of the second linked list
 // @returns - Node where the two linked lists intersect. Nil if there is no intersection
-func findIntersectionNode(head1 *LinkedList, head2 *LinkedList) *LinkedList {
+func FindIntersectionNode(head1 *LinkedList, head2 *LinkedList) *LinkedList {
 	if head1 == nil || head2 == nil {
 		return nil
 	}
@@ -225,7 +224,7 @@ func findIntersectionNode(head1 *LinkedList, head2 *LinkedList) *LinkedList {
 // Function to check whether the a given linked list has a cycle or not
 // @arg head - Head of the first linked list
 // @returns - Node where the cycle in the linked list starts. Nil if there is no cycle
-func detectCycleInLinkedList(head *LinkedList) *LinkedList {
+func DetectCycleInLinkedList(head *LinkedList) *LinkedList {
 	if head == nil {
 		return nil
 	}
