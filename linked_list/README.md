@@ -113,7 +113,7 @@ Algorithm DeleteDuplicates(head):
 3. Return head which is the modified linked list
 ```
 ### 3.2 Nth to the Last Node
-Given a linked list we need to find the nth to the last node in the list.
+Given a linked list we need to find the nth to the last node in the list.  
 [[Code](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L52)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L42)]  
 ```
 Algorithm NthToTheLastNode(head, n):
@@ -127,7 +127,7 @@ Algorithm NthToTheLastNode(head, n):
 5. Return slow, which is the nth to the last node
 ```
 ### 3.3 Partition at N
-Given a linked list and an integer value N. We need to return a modified linked list which is partitioned along N where elements on the left are lesser than N and element to the right are greater than N.
+Given a linked list and an integer value N. We need to return a modified linked list which is partitioned along N where elements on the left are lesser than N and element to the right are greater than N.  
 [[Code](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L76)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L59)]  
 ```
 Algorithm PartitionAtN(head, N):
@@ -146,7 +146,7 @@ Algorithm PartitionAtN(head, N):
 4. Return new head as the modified linked list
 ```
 ### 3.4 Add Numbers using Linked List
-Given two numbers in reverse order stored as linked list. Return the addition of the two numbers as a new linked list.
+Given two numbers in reverse order stored as linked list. Return the addition of the two numbers as a new linked list.  
 [[Code](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L103)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L76)]  
 ```
 Algorithm AddNumbersUsingLinkedList(number1, number2):
@@ -162,7 +162,7 @@ Algorithm AddNumbersUsingLinkedList(number1, number2):
 5. Return result as the new list
 ```
 ### 3.5 Palindrome
-Given a linked list we need to return whether the list is a palindrome or not.
+Given a linked list we need to return whether the list is a palindrome or not.  
 [[Code](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L148)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L96)]  
 ```
 Algorithm IsPalindrome(head):
@@ -182,7 +182,7 @@ Algorithm IsPalindrome(head):
 6. Return true as the list is a palindrome
 ```
 ### 3.6 Find Intersection Node
-Given a two linked lists. We need to return the node at which the two lists intersect.
+Given a two linked lists. We need to return the node at which the two lists intersect.  
 [[Code](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L182)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L121)]  
 ```
 Algorithm FindIntersectionNode(head1, head2):
@@ -202,7 +202,7 @@ Algorithm FindIntersectionNode(head1, head2):
 5. Return null as no intersection was found
 ```
 ### 3.7 Find Cycle Node in Linked List
-Given a linked list node, we need to find whether it contains a cycle and if it does we need to return the start of the cycle node.
+Given a linked list node, we need to find whether it contains a cycle and if it does we need to return the start of the cycle node.  
 [[Code](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L227)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/linked_list/problems.go#L150)]  
 ```
 Algorithm FindCycleNode(head):
