@@ -19,6 +19,23 @@ func TestDepthOfTree(testCase *testing.T) {
 	}
 }
 
+// Test the depth of the binary tree function iterative
+func TestDepthOfTreeIterative(testCase *testing.T) {
+	testCase.Log("To test the depth of the binary tree iterative")
+
+	var tree *Node = nil
+	tree, _ = InsertBinarySearchTree(tree, 5)
+	tree, _ = InsertBinarySearchTree(tree, 2)
+	tree, _ = InsertBinarySearchTree(tree, 4)
+	tree, _ = InsertBinarySearchTree(tree, 7)
+	tree, _ = InsertBinarySearchTree(tree, 6)
+
+	depth := DepthOfTreeIterative(tree)
+	if depth != 3 {
+		testCase.Errorf("Problems Error: Expected depth of tree to be %d. Instead received %d", 2, depth)
+	}
+}
+
 // Test the symmetric function of a binary tree
 func TestIsSymmetric(testCase *testing.T) {
 	testCase.Log("To test the symmetric nature of the binary tree")

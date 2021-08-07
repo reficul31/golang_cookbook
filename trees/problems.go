@@ -18,6 +18,38 @@ func DepthOfTree(root *Node) int {
 	return int(math.Max(float64(leftDepth), float64(rightDept))) + 1
 }
 
+// Function to get the maximum depth of the binary tree iteratively
+// @arg root - Root node of the tree
+// @returns - Depth of the tree
+func DepthOfTreeIterative(root *Node) int {
+	if root == nil {
+		return 0
+	}
+
+	var depth int = 0
+	queue, n_queue := []*Node{}, []*Node{}
+	queue = append(queue, root)
+	for len(queue) != 0 {
+		current := queue[0]
+		if current.left != nil {
+			n_queue = append(n_queue, current.left)
+		}
+
+		if current.right != nil {
+			n_queue = append(n_queue, current.right)
+		}
+
+		if len(queue) == 1 {
+			queue, n_queue = n_queue, []*Node{}
+			depth = depth + 1
+		} else {
+			queue = queue[1:]
+		}
+	}
+
+	return depth
+}
+
 // Function to check whether the binary tree is symmetric around its center
 // @arg left - Left side of the tree
 // @arg right - Right side of the tree
