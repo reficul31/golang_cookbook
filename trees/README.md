@@ -127,3 +127,53 @@ Algorithm LevelOrderTraversalIterative(tree):
 		2. Reinitialize queue 2 to an empty queue
 		3. Do the operation after the level has been traversed
 ```
+## 2. Recursive Problems
+Recursion is one of the most commonly used techniques to tackle binary tree problems. The key to thinking in recursion is to think of the base case first and then taking the small tree and solving the problem for it. Then think how the solution for the small tree fits into the entire solution at hand. Following are some examples to illustrate the same.
+### 2.1 Depth of Binary Tree
+The depth of the binary tree is defined as the maximum number of nodes that exist between the root and the leaf node in a binary tree.
+#### 2.1.1 Depth of Binary Tree Recursive
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/problems.go#L10)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/problems_test.go#L6)]  
+```
+Algorithm DepthOfTree(tree):
+1. If tree == null, return 0
+2. Set leftHeight as DepthOfTree(tree.Left)
+3. Set rightHeight as DepthOfTree(tree.Right)
+4. Return the maximum of leftHeight and rightHeight
+```
+#### 2.1.2 Depth of Binary Tree Iterative
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/problems.go#L24)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/problems_test.go#L23)]  
+```
+Algorithm DepthOfTreeIterative(tree):
+1. Initialize 2 queue named queue and n_queue
+2. Append the root node to the queue
+3. While queue is not empty, do the following:
+	1. Remove from queue and set to current
+	2. If current's left is not null, insert current's left into n_queue
+	3. If current's right is not null, insert current's right into n_queue
+	4. If queue is empty, set queue to n_queue and initialize n_queue as a new queue and increment the depth
+4. Return the depth
+```
+### 2.2 Symmetric Tree
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/problems.go#L57)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/problems_test.go#L40)]  
+A symmetric tree is the one which has matching nodes on the left and right side of the root. Imagine putting a mirror at the node, the left subtree should resemble exactly the right subtree.
+```
+Algorithm IsSymmetric(left, right):
+1. If left and right both are null return true
+2. If either right or left is not null but the other is, return false
+3. If right's data is not equal to left's data return false
+4. Check if left's left and right's right are symmetric by calling the IsSymmetric function
+5. Check if left's right and right's left are symmetric by calling the IsSymmetric function
+6. Return the and of the results from step 4 and 5.
+```
+### 2.3 Target Sum
+[[Code](https://github.com/reficul31/golang_cookbook/blob/master/trees/problems.go#L73)] | [[Test](https://github.com/reficul31/golang_cookbook/blob/master/trees/problems_test.go#L64)]  
+Given a target sum, we need to find a root to leaf node path in the tree such that the sum of the values in the path is equal to the target sum.
+ 
+```
+Algorithm HasTargetSum(root, targetSum):
+1. If root is nil and sum is 0 return true, else return false
+2. Set new sum as targetSum - root's data
+3. If root's left is not null call HasTargetSum with root's left and new sum
+4. If root's right is not null call HasTargetSum with root's right and new sum
+5. Return the or of the results from step 4 an 5.
+```
