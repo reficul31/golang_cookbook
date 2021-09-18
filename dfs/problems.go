@@ -69,3 +69,45 @@ func CombinationSum(candidates []int, index int, target int, current []int, resu
 		}
 	}
 }
+
+// Function to find the subsets of a given array
+func Subsets(nums []int, index int, current []int, results *[][]int) {
+	if index == len(nums) {
+		return
+	}
+
+	*results = append(*results, current)
+	for i := index; i < len(nums); i = i + 1 {
+		current = append(current, nums[i])
+		Subsets(nums, i+1, current, results)
+		current = current[:len(current)-1]
+	}
+}
+
+// Function to find the number of islands in a matrix of 1s and 0s
+func NumIslands(grid [][]byte) int {
+	var count int = 0
+	for i := 0; i < len(grid); i = i + 1 {
+		for j := 0; j < len(grid[i]); j = j + 1 {
+			if grid[i][j] == '1' {
+				Sink(&grid, i, j)
+				count++
+			}
+		}
+	}
+	return count
+}
+
+// Function to find all k length subsets in an array from 1 to n
+func Combine(n, k, index int, current []int, result *[][]int) {
+	if len(current) == k {
+		*result = append(*result, current)
+		return
+	}
+
+	for i := index; i <= n; i = i + 1 {
+		current = append(current, i)
+		Combine(n, k, i+1, current, result)
+		current = current[:len(current)-1]
+	}
+}

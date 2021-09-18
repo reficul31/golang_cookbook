@@ -48,3 +48,27 @@ func CombinationSumWrapper(candidates []int, target int) [][]int {
 	CombinationSum(candidates, 0, target, []int{}, &result)
 	return result
 }
+
+func SubsetsWrapper(nums []int) [][]int {
+	var results [][]int
+	Subsets(nums, 0, []int{}, &results)
+	return results
+}
+
+func Sink(grid *[][]byte, row, column int) {
+	if row < 0 || column < 0 || row >= len(*grid) || column >= len((*grid)[row]) || (*grid)[row][column] == '0' {
+		return
+	}
+
+	(*grid)[row][column] = '0'
+	Sink(grid, row+1, column)
+	Sink(grid, row-1, column)
+	Sink(grid, row, column+1)
+	Sink(grid, row, column-1)
+}
+
+func CombineWrapper(n int, k int) [][]int {
+	var result [][]int
+	Combine(n, k, 1, []int{}, &result)
+	return result
+}
