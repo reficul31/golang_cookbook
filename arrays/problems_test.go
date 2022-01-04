@@ -76,3 +76,15 @@ func TestMaxProduct(testCase *testing.T) {
 		testCase.Errorf("Max Sub Array Error: Function returned the wrong value")
 	}
 }
+
+// Test the pivot point of a rotated array
+func TestFindMin(testCase *testing.T) {
+	testCase.Log("To test the pivot point of a rotated array")
+
+	nums := []int{4, 5, 6, 7, 0, 1, 2}
+	solution := FindMin(nums)
+
+	if solution != 0 {
+		testCase.Errorf("Find Min Error: Function returned the wrong value")
+	}
+}

@@ -95,3 +95,19 @@ func MaxProduct(nums []int) int {
 	}
 	return result
 }
+
+// Function to find the pivot point in the rotated array
+// @arg nums - Array of rotated array
+// @returns - Pivot point of the rotation
+func FindMin(nums []int) int {
+	left, right := 0, len(nums)-1
+	for left < right {
+		mid := (left + right) / 2
+		if nums[mid] < nums[right] {
+			right = mid
+		} else {
+			left = mid + 1
+		}
+	}
+	return nums[left]
+}
