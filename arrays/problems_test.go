@@ -64,3 +64,15 @@ func TestMaxSubArray(testCase *testing.T) {
 		testCase.Errorf("Max Sub Array Error: Function returned the wrong value")
 	}
 }
+
+// Test the maximum product of an array
+func TestMaxProduct(testCase *testing.T) {
+	testCase.Log("To test the maximum product of an array")
+
+	nums := []int{2, 3, -2, 4}
+	solution := MaxProduct(nums)
+
+	if solution != 6 {
+		testCase.Errorf("Max Sub Array Error: Function returned the wrong value")
+	}
+}

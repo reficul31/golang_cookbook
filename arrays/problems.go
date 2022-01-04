@@ -74,8 +74,24 @@ func MaxSubArray(nums []int) int {
 	maxSum, sum := -int(^uint(0)>>1)-1, 0
 	for i := 0; i < len(nums); i = i + 1 {
 		sum += nums[i]
-		maxSum = max(maxSum, sum)
-		sum = max(0, sum)
+		maxSum = max([]int{maxSum, sum})
+		sum = max([]int{0, sum})
 	}
 	return maxSum
+}
+
+// Function to find the maximum product in the array
+// @arg nums - Array of integers to find the max product
+// @returns - Maximum product in the array
+func MaxProduct(nums []int) int {
+	maxProduct, minProduct := 1, 1
+	result := -int(^uint(0)>>1) - 1
+	for i := 0; i < len(nums); i = i + 1 {
+		tempMax := maxProduct
+		maxProduct = max([]int{nums[i], maxProduct * nums[i], minProduct * nums[i]})
+		minProduct = min([]int{nums[i], tempMax * nums[i], minProduct * nums[i]})
+
+		result = max([]int{maxProduct, result})
+	}
+	return result
 }
