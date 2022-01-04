@@ -66,3 +66,16 @@ func ProductExceptSelf(nums []int) []int {
 	}
 	return product
 }
+
+// Function to find a subarray having maximum sum
+// @arg nums - Array of integer to find the subarray
+// @returns - Maximum sum of the subarray
+func MaxSubArray(nums []int) int {
+	maxSum, sum := -int(^uint(0)>>1)-1, 0
+	for i := 0; i < len(nums); i = i + 1 {
+		sum += nums[i]
+		maxSum = max(maxSum, sum)
+		sum = max(0, sum)
+	}
+	return maxSum
+}

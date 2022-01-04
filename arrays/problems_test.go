@@ -52,3 +52,15 @@ func TestProductExceptSelf(testCase *testing.T) {
 		testCase.Errorf("Product Except Self Error: Function returned the wrong value")
 	}
 }
+
+// Test the maximum subarray function
+func TestMaxSubArray(testCase *testing.T) {
+	testCase.Log("To test the maximum subarray function")
+
+	nums := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
+	solution := MaxSubArray(nums)
+
+	if solution != 6 {
+		testCase.Errorf("Max Sub Array Error: Function returned the wrong value")
+	}
+}
