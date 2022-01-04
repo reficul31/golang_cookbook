@@ -40,3 +40,15 @@ func TestContainsDuplicate(testCase *testing.T) {
 		testCase.Errorf("Contains Duplicate Error: Function returned the wrong value")
 	}
 }
+
+// Test the product of array except self
+func TestProductExceptSelf(testCase *testing.T) {
+	testCase.Log("To test the product of array except self")
+
+	nums := []int{1, 2, 3, 4}
+	solution := ProductExceptSelf(nums)
+
+	if len(solution) != 4 || solution[0] != 24 || solution[1] != 12 || solution[2] != 8 || solution[3] != 6 {
+		testCase.Errorf("Product Except Self Error: Function returned the wrong value")
+	}
+}
