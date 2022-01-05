@@ -1,6 +1,9 @@
 package arrays
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 // Function to get indices in the array that add up to the sum
 // @arg nums - Array to search
@@ -97,7 +100,7 @@ func MaxProduct(nums []int) int {
 }
 
 // Function to find the pivot point in the rotated array
-// @arg nums - Array of rotated array
+// @arg nums - Array of rotated integers
 // @returns - Pivot point of the rotation
 func FindMin(nums []int) int {
 	left, right := 0, len(nums)-1
@@ -110,4 +113,93 @@ func FindMin(nums []int) int {
 		}
 	}
 	return nums[left]
+}
+
+// Function to find a target element in a rotated array
+// @arg nums - Array of rotated integers
+// @arg target - Element to be searched in the array
+// @returns - Index of the element in the array
+func SearchRotatedArray(nums []int, target int) int {
+	if len(nums) == 1 && nums[0] == target {
+		return 0
+	}
+
+	left, right := 0, len(nums)-1
+	for left < right {
+		mid := (left + right) / 2
+		if nums[mid] < nums[right] {
+			right = mid
+		} else {
+			left = mid + 1
+		}
+	}
+
+	pivot := left
+	left, right = 0, len(nums)-1
+	for left <= right {
+		mid := (left + right) / 2
+		realMid := (mid + pivot) % len(nums)
+		if nums[realMid] == target {
+			return realMid
+		} else if nums[realMid] < target {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+	return -1
+}
+
+// Function to find 3 elements with sum equal to 0
+// @arg nums - Array of rotated integers
+// @returns - Array of indices summing up to 0
+func ThreeSum(nums []int) [][]int {
+	sort.Ints(nums)
+
+	var result [][]int
+	for i, num := range nums {
+		if i != 0 && nums[i-1] == num {
+			continue
+		}
+
+		left, right := i+1, len(nums)-1
+		sum := 0 - num
+		for left < right {
+			if nums[left]+nums[right] == sum {
+				result = append(result, []int{num, nums[left], nums[right]})
+
+				for left < right && nums[left] == nums[left+1] {
+					left += 1
+				}
+				for left < right && nums[right] == nums[right-1] {
+					right -= 1
+				}
+				left += 1
+				right -= 1
+			} else if nums[left]+nums[right] < sum {
+				left += 1
+			} else {
+				right -= 1
+			}
+		}
+	}
+	return result
+}
+
+// Function to find the container with most water
+// @arg height - Array of container heights
+// @return - Max area of the container in the heights array
+func MaxArea(height []int) int {
+	left, right := 0, len(height)-1
+	maxArea := 0
+	for left < right {
+		if height[left] < height[right] {
+			maxArea = max([]int{maxArea, height[left] * (right - left)})
+			left += 1
+		} else {
+			maxArea = max([]int{maxArea, height[right] * (right - left)})
+			right -= 1
+		}
+	}
+	return maxArea
 }

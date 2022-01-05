@@ -1,6 +1,8 @@
 package arrays
 
-import "testing"
+import (
+	"testing"
+)
 
 // Test the two sum function
 func TestTwoSum(testCase *testing.T) {
@@ -86,5 +88,41 @@ func TestFindMin(testCase *testing.T) {
 
 	if solution != 0 {
 		testCase.Errorf("Find Min Error: Function returned the wrong value")
+	}
+}
+
+// Test the search in rotated array
+func TestSearchRotatedArray(testCase *testing.T) {
+	testCase.Log("To test the search in a rotated array")
+
+	nums := []int{4, 5, 6, 7, 0, 1, 2}
+	solution := SearchRotatedArray(nums, 5)
+
+	if solution != 1 {
+		testCase.Errorf("Search Rotated Array Error: Function returned the wrong value %d", solution)
+	}
+}
+
+// Test the search in rotated array
+func TestThreeSum(testCase *testing.T) {
+	testCase.Log("To test function to find 3 elements with sum equal to 0")
+
+	nums := []int{-1, 0, 1, 2, -1, -4}
+	solution := ThreeSum(nums)
+
+	if len(solution) != 2 || solution[0][0] != -1 || solution[0][1] != -1 || solution[0][2] != 2 || solution[1][0] != -1 || solution[1][1] != 0 || solution[1][2] != 1 {
+		testCase.Errorf("Three Sum Error: Function returned the wrong value")
+	}
+}
+
+// Test to find the maximum area in the heights array
+func TestMaxArea(testCase *testing.T) {
+	testCase.Log("To test function to find the maximum area in the heights array")
+
+	nums := []int{1, 8, 6, 2, 5, 4, 8, 3, 7}
+	solution := MaxArea(nums)
+
+	if solution != 49 {
+		testCase.Errorf("Max Area Error: Function returned the wrong value %d", solution)
 	}
 }
