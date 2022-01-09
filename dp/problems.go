@@ -46,3 +46,19 @@ func CoinChange(coins []int, amount int) int {
 	}
 	return dp[amount]
 }
+
+// Function to find the longest increasing subsequence
+// @arg nums - Array to find the longest increasing subsequence
+// @returns - Length of the longest increasing subsequence
+func LengthOfLIS(nums []int) int {
+	dp, maxLength := make([]int, len(nums)), 0
+	for i := 1; i < len(nums); i = i + 1 {
+		for j := i - 1; j >= 0; j = j - 1 {
+			if nums[j] < nums[i] {
+				dp[i] = max([]int{dp[i], 1 + dp[j]})
+			}
+		}
+		maxLength = max([]int{maxLength, dp[i]})
+	}
+	return maxLength + 1
+}
