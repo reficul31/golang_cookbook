@@ -112,3 +112,21 @@ func WordBreak(s string, wordDict []string) bool {
 	}
 	return dp[len(s)]
 }
+
+// Function to find the possible combinations to make a target using nums
+// @arg nums - The different integers at our disposal
+// @arg target - The target sum to be achieved
+// @returns - The total numbe of possible combinations to make the target
+func CombinationSum4(nums []int, target int) int {
+	dp := make([]int, target+1)
+	dp[0] = 1
+
+	for i := 1; i <= target; i++ {
+		for _, num := range nums {
+			if i-num >= 0 {
+				dp[i] += dp[i-num]
+			}
+		}
+	}
+	return dp[target]
+}

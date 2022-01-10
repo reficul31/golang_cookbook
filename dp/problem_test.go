@@ -71,3 +71,18 @@ func TestWordBreak(testCase *testing.T) {
 		testCase.Errorf("Longest Common Subsequence Error: Function returned the wrong value: %t", solution)
 	}
 }
+
+// Test to find the possible combinations to make a target using nums
+func TestCombinationSum4(testCase *testing.T) {
+	testCase.Log("To test the possible number of combinations to make a target using nums")
+
+	solution := CombinationSum4([]int{1, 2, 3}, 4)
+	if solution != 7 {
+		testCase.Errorf("Combination Sum 4 Error: Function returned the wrong value: %d", solution)
+	}
+
+	solution = CombinationSum4([]int{9}, 3)
+	if solution != 0 {
+		testCase.Errorf("Combination Sum 4 Error: Function returned the wrong value: %d", solution)
+	}
+}
