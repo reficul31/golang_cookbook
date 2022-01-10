@@ -62,3 +62,30 @@ func LengthOfLIS(nums []int) int {
 	}
 	return maxLength + 1
 }
+
+// Function to check the length of the longest common subsequence in two strings
+// @arg text1 - First string (longer string)
+// @arg text2 - Second string (shorter string)
+// @returns - Length of the longest common subsequence
+func LongestCommonSubsequence(text1 string, text2 string) int {
+	if len(text1) < len(text2) {
+		return LongestCommonSubsequence(text2, text1)
+	}
+
+	n, m := len(text1)+1, len(text2)+1
+	dp := make([][]int, m)
+	for i := 0; i < m; i++ {
+		dp[i] = make([]int, n)
+	}
+
+	for i := 1; i < m; i++ {
+		for j := 1; j < n; j++ {
+			if text2[i-1] == text1[j-1] {
+				dp[i][j] = 1 + dp[i-1][j-1]
+			} else {
+				dp[i][j] = max([]int{dp[i-1][j], dp[i][j-1]})
+			}
+		}
+	}
+	return dp[m-1][n-1]
+}

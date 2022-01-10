@@ -24,7 +24,7 @@ func TestCoinChange(testCase *testing.T) {
 
 // Test the length of the longest increasing subsequence
 func TestLengthOfLIS(testCase *testing.T) {
-	testCase.Log("To test tthe length of the longest increasing subsequence")
+	testCase.Log("To test the length of the longest increasing subsequence")
 
 	solution := LengthOfLIS([]int{10, 9, 2, 5, 3, 7, 101, 18})
 	if solution != 4 {
@@ -39,5 +39,20 @@ func TestLengthOfLIS(testCase *testing.T) {
 	solution = LengthOfLIS([]int{7, 7, 7, 7, 7, 7, 7})
 	if solution != 1 {
 		testCase.Errorf("Length of LIS Error: Function returned the wrong value: %d", solution)
+	}
+}
+
+// Test the length of the longest common subsequence in two strings
+func TestLongestCommonSubsequence(testCase *testing.T) {
+	testCase.Log("To test he length of the longest common subsequence in two strings")
+
+	solution := LongestCommonSubsequence("abcde", "ace")
+	if solution != 3 {
+		testCase.Errorf("Longest Common Subsequence Error: Function returned the wrong value: %d", solution)
+	}
+
+	solution = LongestCommonSubsequence("abc", "def")
+	if solution != 0 {
+		testCase.Errorf("Longest Common Subsequence Error: Function returned the wrong value: %d", solution)
 	}
 }
