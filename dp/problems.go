@@ -89,3 +89,26 @@ func LongestCommonSubsequence(text1 string, text2 string) int {
 	}
 	return dp[m-1][n-1]
 }
+
+// Function to find whether we can break a word according to the dictionary provided
+// @arg s - String to be broken into component words
+// @arg wordDict - Word dictionary
+// @return - Boolean that tells whether the word can be broken into the words from the dictionary
+func WordBreak(s string, wordDict []string) bool {
+	dp, hash_map := make([]bool, len(s)+1), make(map[string]bool)
+	for _, word := range wordDict {
+		hash_map[word] = true
+	}
+	dp[0] = true
+
+	for i := 1; i <= len(s); i++ {
+		for j := 0; j < i; j++ {
+			if dp[j] {
+				if _, ok := hash_map[s[j:i]]; ok {
+					dp[i] = true
+				}
+			}
+		}
+	}
+	return dp[len(s)]
+}

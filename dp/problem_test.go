@@ -44,7 +44,7 @@ func TestLengthOfLIS(testCase *testing.T) {
 
 // Test the length of the longest common subsequence in two strings
 func TestLongestCommonSubsequence(testCase *testing.T) {
-	testCase.Log("To test he length of the longest common subsequence in two strings")
+	testCase.Log("To test the length of the longest common subsequence in two strings")
 
 	solution := LongestCommonSubsequence("abcde", "ace")
 	if solution != 3 {
@@ -54,5 +54,20 @@ func TestLongestCommonSubsequence(testCase *testing.T) {
 	solution = LongestCommonSubsequence("abc", "def")
 	if solution != 0 {
 		testCase.Errorf("Longest Common Subsequence Error: Function returned the wrong value: %d", solution)
+	}
+}
+
+// Test whether we can break a word according to the dictionary provided
+func TestWordBreak(testCase *testing.T) {
+	testCase.Log("To test whether we can break a word according to the dictionary provided")
+
+	solution := WordBreak("leetcode", []string{"leet", "code"})
+	if !solution {
+		testCase.Errorf("Word Break Error: Function returned the wrong value: %t", solution)
+	}
+
+	solution = WordBreak("catsandog", []string{"cats", "dog", "sand", "and", "cat"})
+	if solution {
+		testCase.Errorf("Longest Common Subsequence Error: Function returned the wrong value: %t", solution)
 	}
 }
