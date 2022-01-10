@@ -86,3 +86,38 @@ func TestCombinationSum4(testCase *testing.T) {
 		testCase.Errorf("Combination Sum 4 Error: Function returned the wrong value: %d", solution)
 	}
 }
+
+// Test to rob the maximum amount from houses without alerting the police
+func TestHouseRobber(testCase *testing.T) {
+	testCase.Log("To test the loot of maximum amount from houses without alerting the police")
+
+	solution := HouseRobber([]int{1, 2, 3, 1})
+	if solution != 4 {
+		testCase.Errorf("House Robber Error: Function returned the wrong value: %d", solution)
+	}
+
+	solution = HouseRobber([]int{2, 7, 9, 3, 1})
+	if solution != 12 {
+		testCase.Errorf("House Robber Error: Function returned the wrong value: %d", solution)
+	}
+}
+
+// Test to rob the maximum amount from circular houses without alerting the police
+func TestHouseRobberCircular(testCase *testing.T) {
+	testCase.Log("To test the loot of maximum amount from circular houses without alerting the police")
+
+	solution := HouseRobberCircular([]int{2, 3, 2})
+	if solution != 3 {
+		testCase.Errorf("House Robber Error: Function returned the wrong value: %d", solution)
+	}
+
+	solution = HouseRobberCircular([]int{1, 2, 3, 1})
+	if solution != 4 {
+		testCase.Errorf("House Robber Error: Function returned the wrong value: %d", solution)
+	}
+
+	solution = HouseRobberCircular([]int{1, 2, 3})
+	if solution != 3 {
+		testCase.Errorf("House Robber Error: Function returned the wrong value: %d", solution)
+	}
+}

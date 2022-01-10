@@ -130,3 +130,27 @@ func CombinationSum4(nums []int, target int) int {
 	}
 	return dp[target]
 }
+
+// Function to find the optimum way to rob houses
+// @arg nums - Amount of loot in each house
+//  @returns - The maximum amount robbed without alerting the police
+func HouseRobber(nums []int) int {
+	if len(nums) == 1 {
+		return nums[0]
+	}
+
+	two_before, one_before := nums[0], max([]int{nums[0], nums[1]})
+	for i := 2; i < len(nums); i++ {
+		temp := max([]int{nums[i] + two_before, one_before})
+		two_before = one_before
+		one_before = temp
+	}
+	return one_before
+}
+
+// Function to find the optimum way to rob circular houses
+// @arg nums - Amount of loot in each house
+//  @returns - The maximum amount robbed without alerting the police
+func HouseRobberCircular(nums []int) int {
+	return max([]int{HouseRobber(nums[1:]), HouseRobber(nums[:len(nums)-1])})
+}
