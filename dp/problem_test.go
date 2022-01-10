@@ -108,16 +108,66 @@ func TestHouseRobberCircular(testCase *testing.T) {
 
 	solution := HouseRobberCircular([]int{2, 3, 2})
 	if solution != 3 {
-		testCase.Errorf("House Robber Error: Function returned the wrong value: %d", solution)
+		testCase.Errorf("House Robber Circular Error: Function returned the wrong value: %d", solution)
 	}
 
 	solution = HouseRobberCircular([]int{1, 2, 3, 1})
 	if solution != 4 {
-		testCase.Errorf("House Robber Error: Function returned the wrong value: %d", solution)
+		testCase.Errorf("House Robber Circular Error: Function returned the wrong value: %d", solution)
 	}
 
 	solution = HouseRobberCircular([]int{1, 2, 3})
 	if solution != 3 {
-		testCase.Errorf("House Robber Error: Function returned the wrong value: %d", solution)
+		testCase.Errorf("House Robber Circular Error: Function returned the wrong value: %d", solution)
+	}
+}
+
+// Test to check the number of decodings possible for a given string of integers
+func TestNumberOfDecodings(testCase *testing.T) {
+	testCase.Log("To test the number of decodings possible for a given string of integers")
+
+	solution := NumberOfDecodings("12")
+	if solution != 2 {
+		testCase.Errorf("Number Of Decodings Error: Function returned the wrong value: %d", solution)
+	}
+
+	solution = NumberOfDecodings("226")
+	if solution != 3 {
+		testCase.Errorf("Number Of Decodings Error: Function returned the wrong value: %d", solution)
+	}
+
+	solution = NumberOfDecodings("06")
+	if solution != 0 {
+		testCase.Errorf("Number Of Decodings Error: Function returned the wrong value: %d", solution)
+	}
+}
+
+// Test to check the total number of ways to reach the bottom right of a matrix
+func TestUniquePaths(testCase *testing.T) {
+	testCase.Log("To test the total number of ways to reach the bottom right of a matrix")
+
+	solution := UniquePaths(3, 7)
+	if solution != 28 {
+		testCase.Errorf("Unique Paths Error: Function returned the wrong value: %d", solution)
+	}
+
+	solution = UniquePaths(3, 2)
+	if solution != 3 {
+		testCase.Errorf("Unique Paths Error: Function returned the wrong value: %d", solution)
+	}
+}
+
+// Test to check whether we can reach the end of the array using the specified number of jumps at the index
+func TestCanJump(testCase *testing.T) {
+	testCase.Log("To test whether we can reach the end of the array using the specified number of jumps at the index")
+
+	solution := CanJump([]int{3, 2, 1, 0, 4})
+	if solution {
+		testCase.Errorf("Can Jump Error: Function returned the wrong value: %t", solution)
+	}
+
+	solution = CanJump([]int{2, 3, 1, 1, 4})
+	if !solution {
+		testCase.Errorf("Can Jump Error: Function returned the wrong value: %t", solution)
 	}
 }

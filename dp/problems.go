@@ -1,6 +1,9 @@
 package dp
 
-import "math"
+import (
+	"math"
+	"strconv"
+)
 
 // Function to find the total number of ways to reach top
 // @arg n - Total steps to reach the top
@@ -153,4 +156,60 @@ func HouseRobber(nums []int) int {
 //  @returns - The maximum amount robbed without alerting the police
 func HouseRobberCircular(nums []int) int {
 	return max([]int{HouseRobber(nums[1:]), HouseRobber(nums[:len(nums)-1])})
+}
+
+// Function to find the number of decodings for a given string of integers
+// @arg s - String of integers to be decoded
+// @returns - Total number of ways to decode the string of integers
+func NumberOfDecodings(s string) int {
+	dp := make([]int, len(s)+1)
+	dp[0] = 1
+
+	if s[0] != '0' {
+		dp[1] = 1
+	}
+
+	for i := 2; i <= len(s); i++ {
+		if val, ok := strconv.Atoi(string(s[i-1])); ok == nil && val > 0 && val < 10 {
+			dp[i] += dp[i-1]
+		}
+
+		if val, ok := strconv.Atoi(s[i-2 : i]); ok == nil && val > 9 && val < 27 {
+			dp[i] += dp[i-2]
+		}
+	}
+
+	return dp[len(s)]
+}
+
+// Test the total number of ways to reach the bottom right end of a matrix
+// @arg m - Number of rows in the matrix
+// @arg n - Number of columns in the matrix
+// @returns - Total distinct ways to reach the bottom end of the matrix
+func UniquePaths(m int, n int) int {
+	dp, result := make([]int, n), 1
+	for i := 0; i < n; i++ {
+		dp[i] = 1
+	}
+
+	for j := 1; j < m; j++ {
+		result = 1
+		for i := 1; i < n; i++ {
+			result = result + dp[i]
+			dp[i] = result
+		}
+	}
+
+	return dp[n-1]
+}
+
+// Function to find if we can reach the end of the jumps array
+// @arg nums - Jumps possible at each index
+// @returns - Boolean value whether we can reach the end or not
+func CanJump(nums []int) bool {
+	i, reach := 0, 0
+	for i = 0; i < len(nums) && i <= reach && reach < len(nums); i++ {
+		reach = max([]int{i + nums[i], reach})
+	}
+	return reach >= len(nums) || i == len(nums)
 }
